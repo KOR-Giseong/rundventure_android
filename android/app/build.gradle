@@ -1,0 +1,66 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+    id 'com.google.gms.google-services'
+}
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+localProperties.load(new FileInputStream(localPropertiesFile))
+
+def flutterGoogleMapKey = localProperties.getProperty('flutter.GoogleMapKey')
+if (flutterGoogleMapKey == null) {
+    flutterGoogleMapKey = ''
+}
+
+android {
+    namespace = "com.example.work"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId = "com.example.work"
+        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 23
+        targetSdkVersion flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+        multiDexEnabled true
+
+        // Google Maps API 키를 리소스로 추가
+        resValue "string", "GOOGLE_MAP_KEY", flutterGoogleMapKey
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug
+        }
+    }
+}
+
+// Google Maps Android API 의존성 추가
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:2.1.0"
+    implementation 'com.google.android.gms:play-services-maps:18.0.2' // Google Maps SDK
+    implementation platform('com.google.firebase:firebase-bom:33.11.0')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-messaging:23.1.0'  // FCM SDK 추가
+    implementation 'com.android.support:multidex:2.0.1'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
+}
+
+flutter {
+    source = "../.."
+}

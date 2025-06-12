@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "881753560195",
+    "project_id": "rundventure",
+    "storage_bucket": "rundventure.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:881753560195:android:84b36b3227c48dca8177b6",
+        "android_client_info": {
+          "package_name": "com.example.work"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmN2GEfoiaXcDhN6mIA6gbReQRqhoYi5Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
